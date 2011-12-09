@@ -4,7 +4,8 @@ WorkshopsRor::Application.routes.draw do
   end
 
   resources :users
-  root :to => "users#index"
+  resource :session, only: [:new, :create, :destroy]
+  root :to => "decisions#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

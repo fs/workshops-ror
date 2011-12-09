@@ -1,0 +1,7 @@
+<h1>Enter your email</h1>
+<p id="notice"><%= notice %></p>
+
+<%= form_tag session_path, method: :post do %>
+  <%= text_field_tag :email %>
+  <%= submit_tag 'Submit'%>
+<% end %>

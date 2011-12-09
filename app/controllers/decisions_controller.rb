@@ -1,6 +1,6 @@
 class DecisionsController < ApplicationController
-  # GET /decisions
-  # GET /decisions.json
+  before_filter :authenticate_user
+
   def index
     @decisions = Decision.all
 
@@ -10,8 +10,6 @@ class DecisionsController < ApplicationController
     end
   end
 
-  # GET /decisions/1
-  # GET /decisions/1.json
   def show
     @decision = Decision.find(params[:id])
 
@@ -21,8 +19,6 @@ class DecisionsController < ApplicationController
     end
   end
 
-  # GET /decisions/new
-  # GET /decisions/new.json
   def new
     @decision = Decision.new
 
@@ -32,13 +28,10 @@ class DecisionsController < ApplicationController
     end
   end
 
-  # GET /decisions/1/edit
   def edit
     @decision = Decision.find(params[:id])
   end
 
-  # POST /decisions
-  # POST /decisions.json
   def create
     @decision = Decision.new(params[:decision])
 
@@ -53,8 +46,6 @@ class DecisionsController < ApplicationController
     end
   end
 
-  # PUT /decisions/1
-  # PUT /decisions/1.json
   def update
     @decision = Decision.find(params[:id])
 
@@ -69,8 +60,6 @@ class DecisionsController < ApplicationController
     end
   end
 
-  # DELETE /decisions/1
-  # DELETE /decisions/1.json
   def destroy
     @decision = Decision.find(params[:id])
     @decision.destroy
