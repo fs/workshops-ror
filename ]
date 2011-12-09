@@ -19,10 +19,8 @@
     <td><%= decision.subject %></td>
     <td><%= decision.description %></td>
     <td><%= link_to 'Show', decision %></td>
-    <% if decision.owned_by?(current_user) %>
-      <td><%= link_to 'Edit', edit_decision_path(decision) %></td>
-      <td><%= link_to 'Destroy', decision, confirm: 'Are you sure?', method: :delete %></td>
-    <% end %>
+    <td><%= link_to 'Edit', edit_decision_path(decision) %></td>
+    <td><%= link_to 'Destroy', decision, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -1,8 +1,14 @@
 class DecisionsController < ApplicationController
   before_filter :authenticate_user
+  before_filter :set_decision, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
 
   def index
-    @decisions = Decision.all
+    if params[:filter] == 'my'
+      @decisions = Decision.by_user(current_user)
+    else
+      @decisions = Decision.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -67,6 +73,18 @@ class DecisionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to decisions_url }
       format.json { head :ok }
+    end
+  end
+
+  private
+  
+  def set_decision
+    @decision = Decision.find(params[:id])
+  end
+
+  def check_user
+    unless current_user == @decision.user 
+      redirect_to root_path
     end
   end
 end
