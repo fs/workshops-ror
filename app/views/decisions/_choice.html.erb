@@ -1,5 +1,8 @@
 <p>
-  <span> <%= choice.title %> </span>
-  <span> <%= link_to 'Edit', edit_decision_choice_path(decision, choice) %> </span>
-  <span> <%= link_to 'Delete', decision_choice_path(decision, choice), method: :delete, confirm: 'Are you sure you want to remove this Choice?' %> </span>
+  <strong> <%= choice.title %> </strong>
+  <p>
+    <span> Votes count: <%= decision.votes_by(choice) %> </span>
+    <span> <%= link_to 'Edit', edit_decision_choice_path(decision, choice) %> </span>
+    <span> <%= link_to 'Delete', decision_choice_path(decision, choice), method: :delete, confirm: 'Are you sure you want to remove this Choice?' %> </span>
+  </p>
 </p>
