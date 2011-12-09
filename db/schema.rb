@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209035007) do
+ActiveRecord::Schema.define(:version => 20111209141805) do
+
+  create_table "choices", :force => true do |t|
+    t.string   "title"
+    t.integer  "decision_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "decisions", :force => true do |t|
+    t.string   "subject"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -1,5 +1,7 @@
 class Decision < ActiveRecord::Base
+  has_many :choices, dependent: :destroy
+
   validates :subject, :description, presence: true
-  validates :subject, legth: {minimun: 8}
-  validates :description, legth: {minimun: 15}
+  validates :subject, length: {minimum: 8}
+  validates :description, length: {minimum: 15}
 end

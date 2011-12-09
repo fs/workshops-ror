@@ -1,5 +1,7 @@
 WorkshopsRor::Application.routes.draw do
-  resources :decisions
+  resources :decisions do
+    resources :choices, except: [:index, :show]
+  end
 
   resources :users
   root :to => "users#index"

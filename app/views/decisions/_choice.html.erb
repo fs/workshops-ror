@@ -1,0 +1,5 @@
+<p>
+  <span> <%= choice.title %> </span>
+  <span> <%= link_to 'Edit', edit_decision_choice_path(decision, choice) %> </span>
+  <span> <%= link_to 'Delete', decision_choice_path(decision, choice), method: :delete, confirm: 'Are you sure you want to remove this Choice?' %> </span>
+</p>
