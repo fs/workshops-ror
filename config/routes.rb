@@ -1,4 +1,6 @@
 WorkshopsRor::Application.routes.draw do
+  resources :decisions
+
   resources :users
   root :to => "users#index"
 
