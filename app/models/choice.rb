@@ -3,4 +3,8 @@ class Choice < ActiveRecord::Base
   has_many :votes
 
   validates :title, presence: true, length: {minimum: 3}
+
+  def vote!(user)
+    votes.create(user: user)
+  end
 end

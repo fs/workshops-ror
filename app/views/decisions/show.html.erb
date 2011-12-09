@@ -12,7 +12,14 @@
 </p>
 
 <h2>Choices List</h2>
-<%= render partial: 'choice', collection: @decision.choices, locals: {decision: @decision} %>
+<% if @decision.user_voted?(current_user) %>
+  <%= render partial: 'choice', collection: @decision.choices, locals: {decision: @decision} %>
+<% else %>
+  <%= form_tag votes_path(decision_id: @decision.id), method: :post do %>
+    <%= render partial: 'choice', collection: @decision.choices, locals: {decision: @decision} %>
+    <%= submit_tag 'Vote' %>
+  <% end %>
+<% end %>
 
 <% if @decision.owned_by?(current_user) %>
   <%= link_to 'Add New Choice', new_decision_choice_path(@decision) %> |

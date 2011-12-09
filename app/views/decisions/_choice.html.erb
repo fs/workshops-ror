@@ -1,4 +1,7 @@
 <p>
+  <% unless @decision.user_voted?(current_user) %>
+    <%= radio_button_tag 'choice_id', choice.id %>
+  <% end %>
   <strong> <%= choice.title %> </strong>
   <p>
     <span> Votes count: <%= decision.votes_by(choice) %> </span>

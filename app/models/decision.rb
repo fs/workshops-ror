@@ -17,6 +17,10 @@ class Decision < ActiveRecord::Base
     votes.by_choice(choice).count
   end
 
+  def user_voted?(u)
+    votes.by_user(u).count > 0
+  end
+
   def owned_by?(u)
     user == u
   end
