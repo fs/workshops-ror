@@ -1,6 +1,7 @@
 class Decision < ActiveRecord::Base
   has_many :choices, dependent: :destroy
   has_many :votes, through: :choices, source: :votes
+  has_many :messages, dependent: :destroy
   belongs_to :user
 
   validates :subject, :description, presence: true

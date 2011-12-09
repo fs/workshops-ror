@@ -21,6 +21,17 @@
   <% end %>
 <% end %>
 
+<h2>Comments</h2>
+<% if @decision.messages.blank? %>
+  No comments available
+<% else %>
+  <%= render @decision.messages.recent.reverse %>
+<% end %>
+<%= form_for [@decision, Message.new] do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create' %>
+<% end %>
+
 <% if @decision.owned_by?(current_user) %>
   <%= link_to 'Add New Choice', new_decision_choice_path(@decision) %> |
   <%= link_to 'Edit', edit_decision_path(@decision) %> |
