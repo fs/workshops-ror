@@ -16,3 +16,5 @@
 
 # Ignore installed gems
 /vendor/bundle
+
+.rbenv-version
