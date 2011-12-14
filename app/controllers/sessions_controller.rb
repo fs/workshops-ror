@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  respond_to :html
+  skip_before_filter :authenticate_user
   before_filter :check_signed_in_user, only: [:new, :create]
 
   def new
@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
 
     unless @user.nil?
       session[:user_id] = @user.id
-      flash[:notice] = 'You successfully signed in'
-      redirect_to root_path
+      redirect_to root_path, notice: 'You successfully signed in'
     else
       flash[:notice] = 'Email is incorrect'
       render :new
@@ -20,14 +19,12 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to new_session_path
+    redirect_to new_session_path, notice: 'You have successfully signed out'
   end
 
   private
-  
+
   def check_signed_in_user
-    if session[:user_id]
-      redirect_to root_path
-    end
+    redirect_to root_path if signed_in?
   end
 end

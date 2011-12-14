@@ -13,27 +13,28 @@
 
 <h2>Choices List</h2>
 <% if @decision.user_voted?(current_user) %>
-  <%= render partial: 'choice', collection: @decision.choices, locals: {decision: @decision} %>
-<% else %>
+  <%= render @decision.choices %>
+<% elsif @decision.choices.present? %>
   <%= form_tag votes_path(decision_id: @decision.id), method: :post do %>
-    <%= render partial: 'choice', collection: @decision.choices, locals: {decision: @decision} %>
+    <%= render @decision.choices %>
     <%= submit_tag 'Vote' %>
   <% end %>
+<% else %>
+  No choices available
+<% end %>
+<% if @decision.owned_by?(current_user) %>
+  <p><%= link_to 'Add New Choice', new_decision_choice_path(@decision) %></p>
 <% end %>
 
 <h2>Comments</h2>
-<% if @decision.messages.blank? %>
+<% if @decision.comments.blank? %>
   No comments available
 <% else %>
-  <%= render @decision.messages.recent.reverse %>
+  <%= render @decision.comments.recent.reverse %>
 <% end %>
-<%= form_for [@decision, Message.new] do |f| %>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create' %>
-<% end %>
+<%= render 'comments/form' %>
 
 <% if @decision.owned_by?(current_user) %>
-  <%= link_to 'Add New Choice', new_decision_choice_path(@decision) %> |
   <%= link_to 'Edit', edit_decision_path(@decision) %> |
 <% end %>
 <%= link_to 'Back', decisions_path %>

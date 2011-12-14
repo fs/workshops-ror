@@ -1,90 +1,48 @@
 class DecisionsController < ApplicationController
-  before_filter :authenticate_user
-  before_filter :set_decision, only: [:show, :edit, :update, :destroy]
-  before_filter :check_user, only: [:edit, :update, :destroy]
-
   def index
-    if params[:filter] == 'my'
-      @decisions = Decision.by_user(current_user)
+    @decisions = if params[:filter] == 'my'
+      current_user.decisions
     else
-      @decisions = Decision.all
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @decisions }
+      Decision.all
     end
   end
 
   def show
     @decision = Decision.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @decision }
-    end
   end
 
   def new
     @decision = Decision.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @decision }
-    end
   end
 
   def edit
-    @decision = Decision.find(params[:id])
+    @decision = current_user.decisions.find(params[:id])
   end
 
   def create
-    @decision = Decision.new(params[:decision])
+    @decision = current_user.decisions.build(params[:decision])
 
-    respond_to do |format|
-      if @decision.save
-        format.html { redirect_to @decision, notice: 'Decision was successfully created.' }
-        format.json { render json: @decision, status: :created, location: @decision }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @decision.errors, status: :unprocessable_entity }
-      end
+    if @decision.save
+      redirect_to @decision, notice: 'Decision was successfully created.'
+    else
+      render action: "new"
     end
   end
 
   def update
-    @decision = Decision.find(params[:id])
+    @decision = current_user.decisions.find(params[:id])
 
-    respond_to do |format|
-      if @decision.update_attributes(params[:decision])
-        format.html { redirect_to @decision, notice: 'Decision was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @decision.errors, status: :unprocessable_entity }
-      end
+    if @decision.update_attributes(params[:decision])
+      redirect_to @decision, notice: 'Decision was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
   def destroy
-    @decision = Decision.find(params[:id])
+    @decision = current_user.decisions.find(params[:id])
     @decision.destroy
-
-    respond_to do |format|
-      format.html { redirect_to decisions_url }
-      format.json { head :ok }
-    end
+    redirect_to decisions_url
   end
 
-  private
-  
-  def set_decision
-    @decision = Decision.find(params[:id])
-  end
-
-  def check_user
-    unless current_user == @decision.user 
-      redirect_to root_path
-    end
-  end
 end

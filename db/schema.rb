@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20111210143844) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", :force => true do |t|
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "decision_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "decisions", :force => true do |t|
     t.string   "subject"
     t.text     "description"
@@ -27,14 +35,6 @@ ActiveRecord::Schema.define(:version => 20111210143844) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "active",      :default => false
-  end
-
-  create_table "messages", :force => true do |t|
-    t.string   "body"
-    t.integer  "user_id"
-    t.integer  "decision_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

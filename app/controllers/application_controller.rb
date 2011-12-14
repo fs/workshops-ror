@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  respond_to :html
+  before_filter :authenticate_user
   helper_method :signed_in?, :current_user
 
   private
@@ -15,8 +17,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if signed_in?
-      User.find(session[:user_id])
+    @user ||= if signed_in?
+       User.find(session[:user_id])
     end
   end
 end

@@ -8,9 +8,13 @@
 </head>
 <body>
   <div class='navigation'>
-    <% if signed_in? %> 
-      <%= current_user.email %>
-      <%= link_to  'Logout', session_path, method: :delete %>
+    <% if signed_in? %>
+      <span class='fullname'>
+      	<%= current_user.email %>
+	  </span>
+	  <span>
+	    <%= link_to  'Logout', session_path, method: :delete %>
+	  </span>
     <% end %>
   </div>
 

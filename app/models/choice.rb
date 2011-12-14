@@ -5,6 +5,10 @@ class Choice < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 3}
 
   def vote!(user)
-    votes.create(user: user)
+    if decision.user_voted?(user)
+      false
+    else
+      votes.build(user: user).save
+    end
   end
 end

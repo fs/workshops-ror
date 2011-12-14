@@ -1,7 +1,7 @@
 WorkshopsRor::Application.routes.draw do
   resources :decisions do
     resources :choices, except: [:index, :show]
-    resources :messages, only: [:create]
+    resources :comments, only: [:create]
   end
 
   resources :users
