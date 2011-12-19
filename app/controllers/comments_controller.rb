@@ -5,9 +5,10 @@ class CommentsController < ApplicationController
     comment.user = current_user
     
     if comment.save
-      redirect_to decision, notice: 'You have succefully added new comment'
+      notice = 'You have succefully added new comment'
     else
-      render :new
+      notice = 'Coment was not created'
     end
+    redirect_to decision, notice: notice
   end
 end

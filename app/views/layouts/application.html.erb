@@ -8,6 +8,12 @@
 </head>
 <body>
   <div class='navigation'>
+    <span class='home'>
+      <%= link_to 'Home', root_path %>
+    </span>
+    <span class='user-list'>
+      <%= link_to 'Manage Users', users_path %>
+    </span>
     <% if signed_in? %>
       <span class='fullname'>
       	<%= current_user.email %>
