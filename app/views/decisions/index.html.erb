@@ -1,0 +1,32 @@
+<h1>Listing decisions</h1>
+
+<div>
+  <span><%= link_to "All Decisions", decisions_path %> </span>
+  <span><%= link_to "My decisions", decisions_path(filter: 'my') %> </span>
+</div>
+
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @decisions.each do |decision| %>
+  <tr>
+    <td><%= decision.subject %></td>
+    <td><%= decision.description %></td>
+    <td><%= link_to 'Show', decision %></td>
+    <% if decision.owned_by?(current_user) %>
+      <td><%= link_to 'Edit', edit_decision_path(decision) %></td>
+      <td><%= link_to 'Destroy', decision, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Decision', new_decision_path %>

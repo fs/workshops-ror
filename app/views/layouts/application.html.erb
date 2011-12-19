@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WorkshopsRor</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class='navigation'>
+    <% if signed_in? %>
+      <span class='fullname'>
+      	<%= current_user.email %>
+	  </span>
+	  <span>
+	    <%= link_to  'Logout', session_path, method: :delete %>
+	  </span>
+    <% end %>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>

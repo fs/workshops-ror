@@ -1,0 +1,11 @@
+<p>
+  <span class='date'>
+    Created At: <%= pretty_date(comment.created_at) %>
+  </span>
+  <span class='email'>
+    User: <%= comment.user.email %>
+  </span>
+  <span class='body'>
+    <%= comment.body %>
+  </span>
+</p>
