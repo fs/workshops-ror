@@ -1,4 +1,4 @@
-<% content_for :title, 'Posts' %>
+<% title 'Posts' %>
 <% @posts.each do |post| %>
   <h2><%= link_to post.title, post %></h2>
   <p><%= post.body %></p>
