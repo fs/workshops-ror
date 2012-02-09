@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+10.times do |n|
+  Post.create! :title => "Post #{n + 1}", :body => "Text " << "text " * (20 + rand(30))
+end
