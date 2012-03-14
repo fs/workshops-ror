@@ -17,4 +17,8 @@ class PostsController < ApplicationController
     flash[:notice] = 'Post was created successfully'
     redirect_to @post
   end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
 end
