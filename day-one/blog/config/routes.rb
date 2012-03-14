@@ -5,6 +5,7 @@ Blog::Application.routes.draw do
   match 'posts/' => 'posts#index', :as => :posts, :via => :get
   match 'posts/new' => 'posts#new', :as => :new_post
   match 'posts/:id' => 'posts#show', :as => :post
+  match 'posts/:id/edit' => 'posts#edit', :as => :edit_post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
