@@ -1,7 +1,8 @@
 Blog::Application.routes.draw do
   root :to => 'posts#index'
 
-  match 'posts/' => 'posts#index', :as => :posts
+  match 'posts' => 'posts#create', :as => :posts, :via => :post
+  match 'posts/' => 'posts#index', :as => :posts, :via => :get
   match 'posts/new' => 'posts#new', :as => :new_post
   match 'posts/:id' => 'posts#show', :as => :post
 
