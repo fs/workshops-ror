@@ -21,4 +21,11 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update_attributes(params[:post])
+    flash[:notice] = 'Post was updated successfully'
+    redirect_to @post
+  end
 end
