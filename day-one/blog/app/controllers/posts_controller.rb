@@ -14,5 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.save
+    flash[:notice] = 'Post was created successfully'
+    redirect_to @post
   end
 end
