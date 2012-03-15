@@ -13,9 +13,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @post.save
-    flash[:notice] = 'Post was created successfully'
-    redirect_to @post
+    if @post.save
+      flash[:notice] = 'Post was created successfully'
+      redirect_to @post
+    else
+      render :new
+    end
   end
 
   def edit
@@ -24,9 +27,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update_attributes(params[:post])
-    flash[:notice] = 'Post was updated successfully'
-    redirect_to @post
+    if @post.update_attributes(params[:post])
+      flash[:notice] = 'Post was updated successfully'
+      redirect_to @post
+    else
+      render :edit
+    end
   end
 
   def destroy
