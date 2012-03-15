@@ -1,6 +1,7 @@
 <% title 'Posts' %>
-<% @posts.each do |post| %>
-  <h2><%= link_to post.title, post %></h2>
-  <p><%= post.body %></p>
+<% if @posts.present? %>
+  <%= render @posts %>
+<% else %>
+  No posts. Click 'New post' to add first one
 <% end %>
 <%= link_to 'New post', new_post_path %>

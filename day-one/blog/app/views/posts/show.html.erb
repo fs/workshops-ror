@@ -4,17 +4,7 @@
 <h2>Comments</h2>
 <% if @comments.present? %>
   <ul>
-    <%- @comments.each do |comment| %>
-      <ol>
-        <p>
-          Date:
-          <%= comment.created_at %>
-        </p>
-        <p>
-          <%= comment.body %>
-        </p>
-      </ol>
-    <% end %>
+    <%= render @comments %>
   </ul>
 <% else %>
   No comments
