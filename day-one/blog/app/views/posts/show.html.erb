@@ -2,9 +2,9 @@
 <p><%= @post.body %></p>
 
 <h2>Comments</h2>
-<% if @post.comments.present? %>
+<% if @comments.present? %>
   <ul>
-    <%- @post.comments.each do |comment| %>
+    <%- @comments.each do |comment| %>
       <ol>
         <p>
           Date:
