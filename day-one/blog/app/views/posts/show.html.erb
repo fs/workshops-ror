@@ -1,4 +1,25 @@
 <% title @post.title %>
 <p><%= @post.body %></p>
+
+<h2>Comments</h2>
+<% if @post.comments.present? %>
+  <ul>
+    <%- @post.comments.each do |comment| %>
+      <ol>
+        <p>
+          Date:
+          <%= comment.created_at %>
+        </p>
+        <p>
+          <%= comment.body %>
+        </p>
+      </ol>
+    <% end %>
+  </ul>
+<% else %>
+  No comments
+<% end %>
+<p />
+
 <%= link_to 'Edit post', edit_post_path(@post) %>
 <%= link_to 'Destroy post', post_path, :method => :delete, :confirm => 'Are you sure?' %>
